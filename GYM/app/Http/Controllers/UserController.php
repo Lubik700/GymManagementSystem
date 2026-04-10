@@ -37,8 +37,14 @@ function Plan() {
 }
 
 
-function Equipment() {
-    return view('equipment');
+public function Equipment()
+{
+    $equipments = \App\Models\Equipment::where('is_available', true)
+        ->orderBy('category')
+        ->get()
+        ->groupBy('category');
+
+    return view('equipment', compact('equipments'));
 }
 
 

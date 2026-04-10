@@ -4,7 +4,7 @@
 <!-- Welcome Header -->
 <div class="mb-10">
     @php
-        $hour = now()->format('H');
+        $hour = now()->timezone('Asia/Kathmandu')->format('H');
         if ($hour >= 5 && $hour < 12) {
             $greeting = 'Good Morning';
         } elseif ($hour >= 12 && $hour < 17) {

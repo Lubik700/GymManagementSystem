@@ -5,13 +5,15 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ClientLoginController;
 use App\Http\Controllers\WorkoutController;
+use App\Http\Controllers\FeedbackController;
 
 // ─── Static Pages (UserController) ───────────────────────────────────────────
 Route::middleware(['auth.client'])->group(function () {
     Route::get('/home',       [UserController::class, 'Home'])->name('home');
     Route::get('/membership', [UserController::class, 'Membership'])->name('membership');
     Route::get('/equipment',  [UserController::class, 'Equipment'])->name('equipment');
-    Route::get('/feedback',   [UserController::class, 'Feedback'])->name('feedback');
+    Route::get('/feedback',  [FeedbackController::class, 'index'])->name('feedback');
+    Route::post('/feedback', [FeedbackController::class, 'store'])->name('feedback.store');
 
     // ✅ Workout Plans
     Route::get('/plans',                                    [WorkoutController::class, 'index'])->name('plans');
