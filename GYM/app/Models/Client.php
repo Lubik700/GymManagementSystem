@@ -18,8 +18,10 @@ class Client extends Authenticatable
         return $this->hasMany(Subscription::class);
     }
 
-    public function activeSubscription()
-    {
-        return $this->hasOne(Subscription::class)->where('status', 'active')->latest();
-    }
+   public function activeSubscription()
+{
+    return $this->hasOne(Subscription::class)
+        ->where('status', 'active')
+        ->latest();
+}
 }

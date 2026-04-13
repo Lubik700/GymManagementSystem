@@ -113,7 +113,7 @@
 </section>
 
 <script>
-let currentRating = {{ old('rating', 0) }};
+let currentRating = {{old('rating',0)}};
 
 // Restore rating on page reload
 if (currentRating > 0) setRating(currentRating);

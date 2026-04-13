@@ -45,13 +45,22 @@ class ClientLoginController extends Controller
             'client_name' => $client->name,
             'client_email'=> $client->email,
         ]);
-
+        
+        if ($request->boolean('remember')) {
+        cookie()->queue(
+            cookie('remember_client', $client->id, 60 * 48) // 48 hours in minutes
+        );
+        }
         return redirect()->route('home');
     }
 
     public function logout(Request $request)
-    {
-        session()->forget(['client_id', 'client_name', 'client_email']);
-        return redirect()->route('login');
-    }
+{
+    session()->forget(['client_id', 'client_name', 'client_email']);
+
+    // Clear remember me cookie on logout
+    cookie()->queue(cookie()->forget('remember_client'));
+
+    return redirect()->route('login');
+}
 }

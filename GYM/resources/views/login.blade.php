@@ -26,7 +26,7 @@
         <span class="text-white text-3xl font-bold tracking-tight">G</span>
       </div>
       <h2 class="mt-6 text-3xl font-bold text-gray-900 tracking-tight">
-        Gym<span class="text-indigo-600">Flow</span>
+        Gurkhas<span class="text-indigo-600">Fitness</span>
       </h2>
       <!-- <p class="mt-2 text-sm text-gray-600">
         Sign in to manage members, classes & payments
@@ -102,7 +102,7 @@
           </div>
 
           <div class="text-sm">
-            <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500 transition">
+            <a href="{{ route('password.forgot') }}" class="font-medium text-indigo-600 hover:text-indigo-500 transition">
               Forgot password?
             </a>
           </div>
@@ -141,6 +141,10 @@
 
   </div>
 </div>
-
+@if(session('success'))
+    <div class="mb-4 bg-green-50 border-l-4 border-green-500 p-4 rounded-xl text-green-700 text-sm">
+        {{ session('success') }}
+    </div>
+@endif
 </body>
 </html>

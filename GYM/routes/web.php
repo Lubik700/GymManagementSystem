@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ClientLoginController;
 use App\Http\Controllers\WorkoutController;
 use App\Http\Controllers\FeedbackController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
 
 // ─── Static Pages (UserController) ───────────────────────────────────────────
 Route::middleware(['auth.client'])->group(function () {
@@ -36,3 +37,11 @@ Route::get('/register/otp',          [RegisterController::class, 'showOtpForm'])
 Route::post('/register/verify-otp',  [RegisterController::class, 'verifyOtp'])->name('register.verify-otp');
 Route::post('/register/resend-otp',  [RegisterController::class, 'resendOtp'])->name('register.resend-otp');
 Route::get('/register/success',      [RegisterController::class, 'success'])->name('register.success');
+
+// Forgot Password
+Route::get('/forgot-password',         [ForgotPasswordController::class, 'showForm'])->name('password.forgot');
+Route::post('/forgot-password',        [ForgotPasswordController::class, 'sendOtp'])->name('password.send-otp');
+Route::get('/forgot-password/otp',     [ForgotPasswordController::class, 'showOtpForm'])->name('password.otp.form');
+Route::post('/forgot-password/otp',    [ForgotPasswordController::class, 'verifyOtp'])->name('password.verify-otp');
+Route::get('/forgot-password/reset',   [ForgotPasswordController::class, 'showResetForm'])->name('password.reset.form');
+Route::post('/forgot-password/reset',  [ForgotPasswordController::class, 'resetPassword'])->name('password.reset');
