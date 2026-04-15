@@ -7,8 +7,8 @@ use Filament\Resources\Pages\ViewRecord;
 use Filament\Schemas\Schema;
 use Filament\Schemas\Components\Section;
 use Filament\Infolists\Components\TextEntry;
-use Filament\Infolists\Components\ImageEntry;
 use Filament\Infolists\Components\ViewEntry;
+use Filament\Infolists\Components\RepeatableEntry;
 
 class ViewClient extends ViewRecord
 {
@@ -17,12 +17,13 @@ class ViewClient extends ViewRecord
     public function infolist(Schema $schema): Schema
     {
         return $schema->components([
-     Section::make('Profile Picture')
-    ->schema([
-        ViewEntry::make('profile_picture')
-            ->view('filament.profile-picture')
-            ->label(''),
-    ]),
+
+            Section::make('Profile Picture')
+                ->schema([
+                    ViewEntry::make('profile_picture')
+                        ->view('filament.profile-picture')
+                        ->label(''),
+                ]),
 
             Section::make('Personal Information')
                 ->schema([
@@ -45,6 +46,14 @@ class ViewClient extends ViewRecord
                         }),
                     TextEntry::make('created_at')->label('Member Since')->date(),
                 ])->columns(2),
+
+            // ✅ Membership History
+            Section::make('Membership History')
+                ->schema([
+                    ViewEntry::make('id')
+                        ->label('')
+                        ->view('filament.membership-history'),
+                ]),
         ]);
     }
 }
